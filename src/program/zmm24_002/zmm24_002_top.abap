@@ -1,0 +1,145 @@
+
+*&---------------------------------------------------------------------*
+
+*&  Include           ZMM24_002_TOP
+
+*&---------------------------------------------------------------------*
+
+
+
+
+
+
+TABLES : ZEKKO24. "#### ##
+
+TABLES : ZEKPO24. "#### ##
+
+TABLES : ZLFA1_24. "##### ##
+
+TABLES : ZLFM1_24. "##### ##
+
+
+
+" ## ### ##
+
+DATA : OK_CODE TYPE SY-UCOMM,
+
+       GO_EVENT TYPE REF TO EVENT,
+
+       GV_DYNNR TYPE SY-DYNNR VALUE '0101'. "SUBSCREEN ##
+
+
+
+" ## ## ## ### # #
+
+DATA : MWSKZ LIKE ZLFM1_24-MWSKZ. "## ##
+
+DATA : GV_BUKRS LIKE ZEKKO24-BUKRS. "## ##
+
+
+
+DATA : BEGIN OF GS_LFB1.
+
+  include structure
+ZLFB1_24
+.
+
+DATA : END OF GS_LFB1.
+
+DATA : GT_LFB1 LIKE TABLE OF GS_LFB1.
+
+
+
+"ZEKKO24 ### ##
+
+DATA : BEGIN OF GS_HTABLE.
+
+  include structure
+ZEKKO24
+.
+
+DATA : END OF GS_HTABLE.
+
+DATA : GT_HTABLE LIKE TABLE OF GS_HTABLE.
+
+
+
+"ZEKPO24 ### ###
+
+DATA : BEGIN OF GS_ITABLE.
+
+  include structure
+ZEKPO24
+.
+
+DATA : END OF GS_ITABLE.
+
+DATA : GT_ITABLE LIKE TABLE OF GS_ITABLE.
+
+
+
+"SCREEN# ### ### (##)
+
+DATA : BEGIN OF GS_HEADER,
+
+  BUKRS LIKE ZEKKO24-BUKRS, "####
+
+  EKGRP LIKE ZEKKO24-EKGRP, "####
+
+  EKORG LIKE ZEKKO24-EKORG, "####
+
+  LIFNR LIKE ZEKKO24-LIFNR, "###
+
+  BEDAT LIKE ZEKKO24-BEDAT, "###
+
+  END OF GS_HEADER.
+
+
+
+"SCREEN## ### ### (ITEM)
+
+DATA : BEGIN OF GS_ITEM,
+
+  EBELP LIKE ZEKPO24-EBELP, "##
+
+  MATNR LIKE ZEKPO24-MATNR, "####
+
+  MAKTX LIKE ZEKPO24-MAKTX, "###
+
+  MENGE LIKE ZEKPO24-MENGE, "##
+
+  STPRS LIKE ZEKPO24-STPRS, "##
+
+  MEINS LIKE ZEKPO24-MEINS, "##
+
+  WAERS LIKE ZEKKO24-WAERS, "## (## ### ALV ### #)
+
+  MWSKZ LIKE ZLFM1_24-MWSKZ,"## ## (## ### ALV ### #) LFM1_24
+
+  PRDAT LIKE ZEKPO24-PRDAT, "###
+
+  WERKS LIKE ZEKPO24-WERKS, "###
+
+  LGORT LIKE ZEKPO24-LGORT, "####
+
+  END OF GS_ITEM.
+
+DATA : GT_ITEM LIKE TABLE OF GS_ITEM.
+
+
+
+"SUBSCREEN
+
+DATA : GC_CONTAINER TYPE REF TO CL_GUI_CUSTOM_CONTAINER,
+
+       GC_GRID TYPE REF TO CL_GUI_ALV_GRID,
+
+       GS_FC TYPE LVC_S_FCAT,
+
+       GT_FC TYPE LVC_T_FCAT.
+
+
+
+"##
+
+DATA : GC_DOCKING TYPE REF TO CL_GUI_DOCKING_CONTAINER.

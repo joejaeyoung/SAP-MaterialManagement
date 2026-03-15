@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZMM24_004_TOP</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZMM24_004_TOP</h2>
+<h3> Description: </h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZMM24_004_TOP<br />
+*&---------------------------------------------------------------------*<br />
+<br />
+   </div>
+   <div class="code">
+TABLES : ZRBKP24. "##-##<br />
+TABLES : ZRSEG24. "##-###<br />
+TABLES : ZEKKO24. "####-##<br />
+TABLES : ZEKPO24. "####-###<br />
+<br />
+TYPE-POOLS: ICON.<br />
+<br />
+"## ##<br />
+CONSTANTS : C_TAX_V1 TYPE P DECIMALS 2 VALUE '0.10',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C_TAX_V2&nbsp;TYPE&nbsp;P&nbsp;DECIMALS&nbsp;2&nbsp;VALUE&nbsp;'0.00',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C_TAX_V3&nbsp;TYPE&nbsp;P&nbsp;DECIMALS&nbsp;2&nbsp;VALUE&nbsp;'0.00',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C_TAX_V4&nbsp;TYPE&nbsp;P&nbsp;DECIMALS&nbsp;2&nbsp;VALUE&nbsp;'0.10',<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C_TAX_V5&nbsp;TYPE&nbsp;P&nbsp;DECIMALS&nbsp;2&nbsp;VALUE&nbsp;'0.10'.<br />
+<br />
+"#####<br />
+DATA : GV_LEFT_MONEY TYPE WRBTR,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_SIGNAL&nbsp;TYPE&nbsp;ICON_D&nbsp;VALUE&nbsp;ICON_LED_RED.<br />
+<br />
+"### ##<br />
+DATA : GO_EVENT TYPE REF TO EVENT,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GY_DYNNR&nbsp;TYPE&nbsp;SY-DYNNR&nbsp;VALUE&nbsp;'0110'.&nbsp;"SUB-SCREEN&nbsp;##<br />
+<br />
+<br />
+"[100# ###]<br />
+DATA : GC_CONTAINER TYPE REF TO CL_GUI_CUSTOM_CONTAINER,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GC_GRID&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;CL_GUI_ALV_GRID.<br />
+<br />
+"[200# ## ## : TREE]<br />
+DATA : GC_CON_TREE TYPE REF TO CL_GUI_CUSTOM_CONTAINER, "### ####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GO_TREE&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;CL_GUI_SIMPLE_TREE.&nbsp;&nbsp;"##&nbsp;##<br />
+<br />
+"[200# ## ## : ALV]<br />
+DATA : GC_CONTAINER_210 TYPE REF TO CL_GUI_CUSTOM_CONTAINER,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GC_GRID_210&nbsp;TYPE&nbsp;REF&nbsp;TO&nbsp;CL_GUI_ALV_GRID.<br />
+<br />
+"[##]<br />
+DATA : GS_FC TYPE LVC_S_FCAT,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GT_FC&nbsp;TYPE&nbsp;LVC_T_FCAT.<br />
+<br />
+"####<br />
+CONTROLS: TAB_INPUT TYPE TABSTRIP.<br />
+<br />
+"## ## ##<br />
+DATA : BEGIN OF GS_RBKP,<br />
+&nbsp;&nbsp;BELNR&nbsp;LIKE&nbsp;ZRBKP24-BELNR,&nbsp;"######<br />
+&nbsp;&nbsp;GJAHR&nbsp;LIKE&nbsp;ZRBKP24-GJAHR,&nbsp;"####<br />
+&nbsp;&nbsp;BLART&nbsp;LIKE&nbsp;ZRBKP24-BLART,&nbsp;"####<br />
+&nbsp;&nbsp;BLDAT&nbsp;LIKE&nbsp;ZRBKP24-BLDAT,&nbsp;"###<br />
+&nbsp;&nbsp;BUDAT&nbsp;LIKE&nbsp;ZRBKP24-BUDAT,&nbsp;"###<br />
+&nbsp;&nbsp;BUKRS&nbsp;LIKE&nbsp;ZRBKP24-BUKRS,&nbsp;"####<br />
+&nbsp;&nbsp;LIFNR&nbsp;LIKE&nbsp;ZRBKP24-LIFNR,&nbsp;"###&nbsp;(####)<br />
+&nbsp;&nbsp;WAERS&nbsp;LIKE&nbsp;ZRBKP24-WAERS,&nbsp;"###<br />
+&nbsp;&nbsp;ZTERM&nbsp;LIKE&nbsp;ZRBKP24-ZTERM,&nbsp;"####<br />
+&nbsp;&nbsp;BKTXT&nbsp;LIKE&nbsp;ZRBKP24-BKTXT,&nbsp;"#####<br />
+&nbsp;&nbsp;XMWST&nbsp;LIKE&nbsp;ZRBKP24-XMWST,&nbsp;"##&nbsp;##&nbsp;##&nbsp;(####)<br />
+&nbsp;&nbsp;MWSKZ&nbsp;LIKE&nbsp;ZRBKP24-MWSKZ,&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;WMWST&nbsp;LIKE&nbsp;ZRBKP24-WMWST,&nbsp;"##<br />
+&nbsp;&nbsp;RMWWR&nbsp;LIKE&nbsp;ZRBKP24-RMWWR,&nbsp;"#&nbsp;##&nbsp;##&nbsp;(##&nbsp;###)<br />
+&nbsp;&nbsp;STBLG&nbsp;LIKE&nbsp;ZRBKP24-STBLG,&nbsp;"##&nbsp;(####)<br />
+&nbsp;&nbsp;STJAH&nbsp;LIKE&nbsp;ZRBKP24-STJAH,&nbsp;"##&nbsp;(##)<br />
+&nbsp;&nbsp;RBSTAT&nbsp;LIKE&nbsp;ZRBKP24-RBSTAT,"##&nbsp;##<br />
+&nbsp;&nbsp;XBLNR&nbsp;LIKE&nbsp;ZRBKP24-XBLNR,&nbsp;"##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;END&nbsp;OF&nbsp;GS_RBKP.<br />
+DATA : GT_RBKP LIKE TABLE OF GS_RBKP.<br />
+<br />
+"## ## ###<br />
+DATA : BEGIN OF GS_RSEG,<br />
+&nbsp;&nbsp;LOEKZ&nbsp;LIKE&nbsp;ZRSEG24-LOEKZ,&nbsp;"##&nbsp;###<br />
+&nbsp;&nbsp;STATUS_ICON&nbsp;TYPE&nbsp;C&nbsp;LENGTH&nbsp;4,&nbsp;"###<br />
+&nbsp;&nbsp;BELNR&nbsp;LIKE&nbsp;ZRSEG24-BELNR,&nbsp;"######<br />
+&nbsp;&nbsp;GJAHR&nbsp;LIKE&nbsp;ZRSEG24-GJAHR,&nbsp;"####<br />
+&nbsp;&nbsp;BUZEI&nbsp;LIKE&nbsp;ZRSEG24-BUZEI,&nbsp;"####&nbsp;##<br />
+&nbsp;&nbsp;EBELN&nbsp;LIKE&nbsp;ZRSEG24-EBELN,&nbsp;"####&nbsp;##<br />
+&nbsp;&nbsp;EBELP&nbsp;LIKE&nbsp;ZRSEG24-EBELP,&nbsp;"####&nbsp;##<br />
+&nbsp;&nbsp;MATNR&nbsp;LIKE&nbsp;ZRSEG24-MATNR,&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;TXZ01&nbsp;LIKE&nbsp;ZRSEG24-TXZ01,&nbsp;"##&nbsp;##&nbsp;(MAKTX#&nbsp;##)<br />
+&nbsp;&nbsp;WERKS&nbsp;LIKE&nbsp;ZRSEG24-WERKS,&nbsp;"###<br />
+&nbsp;&nbsp;WRBTR&nbsp;LIKE&nbsp;ZRSEG24-WRBTR,&nbsp;"####<br />
+&nbsp;&nbsp;MENGE&nbsp;LIKE&nbsp;ZRSEG24-MENGE,&nbsp;"##<br />
+&nbsp;&nbsp;BSTME&nbsp;LIKE&nbsp;ZRSEG24-BSTME,&nbsp;"##&nbsp;(##&nbsp;##&nbsp;/&nbsp;##&nbsp;##)<br />
+&nbsp;&nbsp;MWSKZ&nbsp;LIKE&nbsp;ZRSEG24-MWSKZ,&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;WMWST&nbsp;LIKE&nbsp;ZRSEG24-WMWST,&nbsp;"##<br />
+&nbsp;&nbsp;SGTXT&nbsp;LIKE&nbsp;ZRSEG24-SGTXT,&nbsp;"###<br />
+&nbsp;&nbsp;WAERS&nbsp;LIKE&nbsp;ZRSEG24-WAERS,&nbsp;"#&nbsp;##<br />
+&nbsp;&nbsp;MEINS&nbsp;LIKE&nbsp;ZRSEG24-MEINS,&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;END&nbsp;OF&nbsp;GS_RSEG.<br />
+DATA : GT_RSEG LIKE TABLE OF GS_RSEG.<br />
+<br />
+"#### ##<br />
+DATA : BEGIN OF GS_EKKO,<br />
+&nbsp;&nbsp;EBELN&nbsp;LIKE&nbsp;ZEKKO24-EBELN,&nbsp;"####&nbsp;##<br />
+&nbsp;&nbsp;BUKRS&nbsp;LIKE&nbsp;ZEKKO24-BUKRS,&nbsp;"####<br />
+&nbsp;&nbsp;EKGRP&nbsp;LIKE&nbsp;ZEKKO24-EKGRP,&nbsp;"####<br />
+&nbsp;&nbsp;EKORG&nbsp;LIKE&nbsp;ZEKKO24-EKORG,&nbsp;"####<br />
+&nbsp;&nbsp;LIFNR&nbsp;LIKE&nbsp;ZEKKO24-LIFNR,&nbsp;"###<br />
+&nbsp;&nbsp;BEDAT&nbsp;LIKE&nbsp;ZEKKO24-BEDAT,&nbsp;"###<br />
+&nbsp;&nbsp;WAERS&nbsp;LIKE&nbsp;ZEKKO24-WAERS,&nbsp;"##<br />
+&nbsp;&nbsp;END&nbsp;OF&nbsp;GS_EKKO.<br />
+<br />
+"#### ###<br />
+DATA : BEGIN OF GS_EKPO,<br />
+&nbsp;&nbsp;EBELN&nbsp;LIKE&nbsp;ZEKPO24-EBELN,&nbsp;"####&nbsp;##<br />
+&nbsp;&nbsp;EBELP&nbsp;LIKE&nbsp;ZEKPO24-EBELP,&nbsp;"##<br />
+&nbsp;&nbsp;MWSKZ&nbsp;LIKE&nbsp;ZEKPO24-MWSKZ,&nbsp;"####<br />
+&nbsp;&nbsp;MATNR&nbsp;LIKE&nbsp;ZEKPO24-MATNR,&nbsp;"####<br />
+&nbsp;&nbsp;MAKTX&nbsp;LIKE&nbsp;ZEKPO24-MAKTX,&nbsp;"###<br />
+&nbsp;&nbsp;MENGE&nbsp;LIKE&nbsp;ZEKPO24-MENGE,&nbsp;"##<br />
+&nbsp;&nbsp;MEINS&nbsp;LIKE&nbsp;ZEKPO24-MEINS,&nbsp;"##<br />
+&nbsp;&nbsp;BPRME&nbsp;LIKE&nbsp;ZEKPO24-BPRME,&nbsp;"##2<br />
+&nbsp;&nbsp;PRDAT&nbsp;LIKE&nbsp;ZEKPO24-PRDAT,&nbsp;"###<br />
+&nbsp;&nbsp;WERKS&nbsp;LIKE&nbsp;ZEKPO24-WERKS,&nbsp;"###<br />
+&nbsp;&nbsp;LGORT&nbsp;LIKE&nbsp;ZEKPO24-LGORT,&nbsp;"####<br />
+&nbsp;&nbsp;STPRS&nbsp;LIKE&nbsp;ZEKPO24-STPRS,&nbsp;"##<br />
+&nbsp;&nbsp;WEMNG&nbsp;LIKE&nbsp;ZEKPO24-WEMNG,&nbsp;"##&nbsp;(##&nbsp;##&nbsp;###)<br />
+&nbsp;&nbsp;REMNG&nbsp;LIKE&nbsp;ZEKPO24-REMNG,&nbsp;"##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;END&nbsp;OF&nbsp;GS_EKPO.<br />
+DATA : GT_EKPO LIKE TABLE OF GS_EKPO.<br />
+<br />
+"### ### (ALV ###)<br />
+DATA : BEGIN OF GS_ITEM,<br />
+&nbsp;&nbsp;CHECK&nbsp;&nbsp;TYPE&nbsp;C,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;###&nbsp;####<br />
+&nbsp;&nbsp;BELNR&nbsp;LIKE&nbsp;ZRBKP24-BELNR,&nbsp;"######<br />
+&nbsp;&nbsp;GJAHR&nbsp;LIKE&nbsp;ZRBKP24-GJAHR,&nbsp;"####<br />
+&nbsp;&nbsp;BUZEI&nbsp;&nbsp;LIKE&nbsp;ZRSEG24-BUZEI,&nbsp;&nbsp;"##&nbsp;###<br />
+&nbsp;&nbsp;EBELN&nbsp;&nbsp;LIKE&nbsp;ZRSEG24-EBELN,&nbsp;&nbsp;"PO##<br />
+&nbsp;&nbsp;EBELP&nbsp;&nbsp;LIKE&nbsp;ZRSEG24-EBELP,&nbsp;&nbsp;"PO#&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;MATNR&nbsp;&nbsp;LIKE&nbsp;ZRSEG24-MATNR,&nbsp;&nbsp;"####<br />
+&nbsp;&nbsp;TXZ01&nbsp;&nbsp;LIKE&nbsp;ZRSEG24-TXZ01,&nbsp;&nbsp;"####<br />
+&nbsp;&nbsp;WERKS&nbsp;&nbsp;LIKE&nbsp;ZRSEG24-WERKS,&nbsp;&nbsp;"###<br />
+&nbsp;&nbsp;WRBTR&nbsp;&nbsp;LIKE&nbsp;ZRSEG24-WRBTR,&nbsp;&nbsp;"####&nbsp;(##&nbsp;x&nbsp;##)<br />
+&nbsp;&nbsp;STPRS&nbsp;&nbsp;LIKE&nbsp;ZEKPO24-STPRS,&nbsp;&nbsp;"##<br />
+&nbsp;&nbsp;WAERS&nbsp;&nbsp;LIKE&nbsp;ZEKKO24-WAERS,&nbsp;&nbsp;"##<br />
+&nbsp;&nbsp;MENGE&nbsp;&nbsp;LIKE&nbsp;ZRSEG24-MENGE,&nbsp;&nbsp;"##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;WEMNG&nbsp;&nbsp;LIKE&nbsp;ZEKPO24-WEMNG,&nbsp;&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;REMNG&nbsp;&nbsp;LIKE&nbsp;ZEKPO24-REMNG,&nbsp;&nbsp;"##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;OPEN_QTY&nbsp;LIKE&nbsp;ZEKPO24-MENGE,"##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;IR_QTY&nbsp;LIKE&nbsp;ZEKPO24-REMNG,&nbsp;"##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;MEINS&nbsp;&nbsp;LIKE&nbsp;ZEKPO24-MEINS,&nbsp;&nbsp;"##<br />
+&nbsp;&nbsp;BSTME&nbsp;&nbsp;LIKE&nbsp;ZRSEG24-BSTME,&nbsp;&nbsp;"##<br />
+&nbsp;&nbsp;MWSKZ&nbsp;&nbsp;LIKE&nbsp;ZRSEG24-MWSKZ,&nbsp;&nbsp;"####<br />
+&nbsp;&nbsp;WMWST&nbsp;&nbsp;LIKE&nbsp;ZRSEG24-WMWST,&nbsp;&nbsp;"##<br />
+&nbsp;&nbsp;DMBTR&nbsp;&nbsp;LIKE&nbsp;BSIK-DMBTR,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;##&nbsp;(###&nbsp;+&nbsp;##)<br />
+&nbsp;&nbsp;SGTXT&nbsp;&nbsp;LIKE&nbsp;ZRSEG24-SGTXT,&nbsp;&nbsp;"###<br />
+&nbsp;&nbsp;END&nbsp;OF&nbsp;GS_ITEM.<br />
+DATA : GT_ITEM LIKE TABLE OF GS_ITEM.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 750</td>
+   </tr>
+</table>
+</body>
+</html>

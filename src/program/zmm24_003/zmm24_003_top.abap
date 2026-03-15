@@ -1,0 +1,203 @@
+
+*&---------------------------------------------------------------------*
+
+*&  Include           ZMM24_003_TOP
+
+*&---------------------------------------------------------------------*
+
+
+
+
+
+
+TABLES : ZMKPF24. "##-##
+
+TABLES : ZMSEG24. "##-###
+
+TABLES : ZEKKO24. "####-##
+
+TABLES : ZEKPO24. "####-###
+
+
+
+"## ## ##
+
+DATA : BEGIN OF GS_MKPF,
+
+  MBLNR LIKE ZMKPF24-MBLNR,  "#### ## 5### ##
+
+  MJAHR LIKE ZMKPF24-MJAHR,  "#### (#### ##)
+
+  BLART LIKE ZMKPF24-BLART,  "#### WE(##### ## ##)
+
+  BLDAT LIKE ZMKPF24-BLDAT,  "###
+
+  BUDAT LIKE ZMKPF24-BUDAT,  "###
+
+  EBELN LIKE ZMKPF24-EBELN,  "######
+
+  WERKS LIKE ZMKPF24-WERKS,  "###
+
+END OF GS_MKPF.
+
+DATA : GT_MKPF LIKE TABLE OF GS_MKPF.
+
+
+
+
+
+"## ## ###
+
+DATA : BEGIN OF GS_MSEG,
+
+  MBLNR LIKE ZMSEG24-MBLNR,   "######
+
+  MJAHR LIKE ZMSEG24-MJAHR,   "#### (#### ##(
+
+  ZEILE LIKE ZMSEG24-ZEILE,   "#####
+
+  BWART LIKE ZMSEG24-BWART,   "TODO ####
+
+  MATNR LIKE ZMSEG24-MATNR,   "####
+
+  WERKS LIKE ZMSEG24-WERKS,   "###
+
+  LGORT LIKE ZMSEG24-LGORT,   "####
+
+  LIFNR LIKE ZMSEG24-LIFNR,   "#####
+
+  WAERS LIKE ZMSEG24-WAERS,   "###
+
+  MENGE LIKE ZMSEG24-MENGE,   "##
+
+  MEINS LIKE ZMSEG24-MEINS,   "##
+
+  EBELN LIKE ZMSEG24-EBELN,   "#### ##
+
+  BUKRS LIKE ZMSEG24-BUKRS,   "####
+
+  GJAHR LIKE ZMSEG24-GJAHR,   "####
+
+  ZZEILE LIKE ZMSEG24-ZZEILE, "####
+
+  ZEBELP LIKE ZMSEG24-ZEBELP, "####
+
+  SHKZG LIKE ZMSEG24-SHKZG,   "### (S : ##, H : ##)
+
+  DMBTR LIKE ZMSEG24-DMBTR,   "##
+
+  END OF GS_MSEG.
+
+DATA : GT_MSEG LIKE TABLE OF GS_MSEG.
+
+
+
+"## ## ###
+
+DATA : BEGIN OF GS_ITEM,
+
+  CHECK TYPE C, "## ####
+
+  BWART LIKE ZMSEG24-BWART,       "TODO ####
+
+  EBELN LIKE ZEKPO24-EBELN,       "######
+
+  EBELP LIKE ZEKPO24-EBELP,       "##
+
+  LIFNR LIKE ZEKKO24-LIFNR,       "###
+
+  BEDAT LIKE ZEKKO24-BEDAT,       "###
+
+  MATNR LIKE ZEKPO24-MATNR,       "####
+
+  MAKTX LIKE ZEKPO24-MAKTX,       "###
+
+  MENGE LIKE ZEKPO24-MENGE,       "## ## ##
+
+  WEMNG LIKE ZEKPO24-WEMNG,       "## ## ##
+
+  OPEN_QTY LIKE ZEKPO24-WEMNG,    "### ##
+
+  GR_QTY LIKE ZEKPO24-WEMNG,      "## ## ##
+
+  MEINS LIKE ZEKPO24-MEINS,       "##
+
+  STPRS LIKE ZEKPO24-STPRS,       "##
+
+  WAERS LIKE ZEKKO24-WAERS,       "##
+
+  PRDAT LIKE ZEKPO24-PRDAT,       "###
+
+  WERKS LIKE ZEKPO24-WERKS,       "###
+
+  LGORT LIKE ZEKPO24-LGORT,       "####
+
+  END OF GS_ITEM.
+
+DATA : GT_ITEM LIKE TABLE OF GS_ITEM.
+
+
+
+"#### ##
+
+DATA : BEGIN OF GS_PO_HEADER.
+
+  include structure
+ZEKKO24
+.
+
+DATA : END OF GS_PO_HEADER.
+
+
+
+"#### ###
+
+DATA : BEGIN OF GS_PO_ITEM.
+
+  include structure
+ZEKPO24
+.
+
+DATA : END OF GS_PO_ITEM.
+
+DATA : GT_PO_ITEM LIKE TABLE OF GS_PO_ITEM.
+
+
+
+"### ##
+
+DATA : GO_EVENT TYPE REF TO EVENT,
+
+       GY_DYNNR TYPE SY-DYNNR VALUE '0101'. "SUB-SCREEN ##
+
+
+
+"[100# ###]
+
+DATA : GC_CONTAINER TYPE REF TO CL_GUI_CUSTOM_CONTAINER,
+
+       GC_GRID TYPE REF TO CL_GUI_ALV_GRID.
+
+
+
+"[200# ## ## : TREE]
+
+DATA : GC_CON_TREE TYPE REF TO CL_GUI_CUSTOM_CONTAINER, "### ####
+
+       GO_TREE TYPE REF TO CL_GUI_SIMPLE_TREE.  "## ##
+
+
+
+"[200# ## ## : ALV]
+
+DATA : GC_CONTAINER_201 TYPE REF TO CL_GUI_CUSTOM_CONTAINER,
+
+       GC_GRID_201 TYPE REF TO CL_GUI_ALV_GRID.
+
+
+
+"SUBSCREEN
+
+DATA : GS_FC TYPE LVC_S_FCAT,
+
+       GT_FC TYPE LVC_T_FCAT.

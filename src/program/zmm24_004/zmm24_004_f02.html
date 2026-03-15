@@ -1,0 +1,540 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZMM24_004_F02</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZMM24_004_F02</h2>
+<h3> Description: </h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZMM24_004_F02<br />
+*&---------------------------------------------------------------------*<br />
+<br />
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;VALID_IR_INPUT_DSP<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;####&nbsp;###&nbsp;##<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM VALID_IR_INPUT_DSP .<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;LV_EBELN&nbsp;LIKE&nbsp;ZRBKP24-EBELN,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LV_WERKS&nbsp;LIKE&nbsp;ZRBKP24-WERKS.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;P_EBELN2&nbsp;IS&nbsp;INITIAL<br />
+&nbsp;&nbsp;&nbsp;&nbsp;OR&nbsp;P_WERKS2&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;'##&nbsp;##&nbsp;######'&nbsp;TYPE&nbsp;'I'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;STOP.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"1.&nbsp;##&nbsp;###&nbsp;####&nbsp;######&nbsp;##<br />
+&nbsp;&nbsp;SELECT&nbsp;SINGLE&nbsp;EBELN&nbsp;FROM&nbsp;ZRBKP24<br />
+&nbsp;&nbsp;&nbsp;&nbsp;INTO&nbsp;LV_EBELN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;EBELN&nbsp;=&nbsp;P_EBELN2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;WERKS&nbsp;=&nbsp;P_WERKS2.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;SY-SUBRC&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;'##&nbsp;###&nbsp;####&nbsp;##&nbsp;###&nbsp;####'&nbsp;TYPE&nbsp;'I'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;STOP.<br />
+&nbsp;&nbsp;ENDIF.<br />
+ENDFORM.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;GET_IR_DATA<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;####&nbsp;#######<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM GET_IR_DATA .<br />
+&nbsp;&nbsp;CLEAR&nbsp;:&nbsp;GT_RBKP,&nbsp;GT_RSEG.<br />
+<br />
+&nbsp;&nbsp;"1.&nbsp;##<br />
+&nbsp;&nbsp;SELECT&nbsp;*&nbsp;FROM&nbsp;ZRBKP24<br />
+&nbsp;&nbsp;&nbsp;&nbsp;INTO&nbsp;CORRESPONDING&nbsp;FIELDS&nbsp;OF&nbsp;TABLE&nbsp;GT_RBKP<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;EBELN&nbsp;=&nbsp;P_EBELN2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;WERKS&nbsp;=&nbsp;P_WERKS2.<br />
+<br />
+&nbsp;&nbsp;"2.&nbsp;###<br />
+&nbsp;&nbsp;SELECT&nbsp;*&nbsp;FROM&nbsp;ZRSEG24<br />
+&nbsp;&nbsp;&nbsp;&nbsp;INTO&nbsp;CORRESPONDING&nbsp;FIELDS&nbsp;OF&nbsp;TABLE&nbsp;GT_RSEG<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;EBELN&nbsp;=&nbsp;P_EBELN2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;WERKS&nbsp;=&nbsp;P_WERKS2.<br />
+<br />
+&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;GT_RSEG&nbsp;INTO&nbsp;GS_RSEG.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;GS_RSEG-LOEKZ&nbsp;=&nbsp;'X'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GS_RSEG-STATUS_ICON&nbsp;=&nbsp;ICON_LED_RED.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GS_RSEG-STATUS_ICON&nbsp;=&nbsp;ICON_LED_GREEN.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MODIFY&nbsp;GT_RSEG&nbsp;FROM&nbsp;GS_RSEG.<br />
+&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;SY-SUBRC&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;'###&nbsp;##&nbsp;####&nbsp;####&nbsp;####.'&nbsp;TYPE&nbsp;'I'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;STOP.<br />
+&nbsp;&nbsp;ENDIF.<br />
+ENDFORM.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;BUILD_TREE_NODES<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;####&nbsp;##&nbsp;####<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM BUILD_TREE_NODES .<br />
+&nbsp;&nbsp;"##&nbsp;##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;DATA:&nbsp;GT_NODES&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;MTREESNODE,&nbsp;"##&nbsp;##&nbsp;###<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_NODE&nbsp;&nbsp;TYPE&nbsp;MTREESNODE,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;##&nbsp;##&nbsp;(LS_NODE)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_EXPAND_NODE&nbsp;TYPE&nbsp;MTREESNODE.<br />
+<br />
+&nbsp;&nbsp;"DB&nbsp;###&nbsp;##<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;LT_RBKP&nbsp;TYPE&nbsp;TABLE&nbsp;OF&nbsp;ZRBKP24,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_RBKP&nbsp;TYPE&nbsp;ZRBKP24.<br />
+<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;LV_DATE_CHAR&nbsp;TYPE&nbsp;C&nbsp;LENGTH&nbsp;10.<br />
+<br />
+&nbsp;&nbsp;"1.&nbsp;##&nbsp;PO#&nbsp;###&nbsp;##&nbsp;##&nbsp;(##&nbsp;+&nbsp;##)&nbsp;##<br />
+&nbsp;&nbsp;SELECT&nbsp;*&nbsp;FROM&nbsp;ZRBKP24<br />
+&nbsp;&nbsp;&nbsp;&nbsp;INTO&nbsp;TABLE&nbsp;LT_RBKP<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;EBELN&nbsp;=&nbsp;P_EBELN2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;WERKS&nbsp;=&nbsp;P_WERKS2<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ORDER&nbsp;BY&nbsp;BELNR&nbsp;ASCENDING.<br />
+<br />
+&nbsp;&nbsp;"2.&nbsp;##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;CLEAR&nbsp;LS_NODE.<br />
+&nbsp;&nbsp;LS_NODE-NODE_KEY&nbsp;&nbsp;=&nbsp;'ROOT'.<br />
+&nbsp;&nbsp;LS_NODE-ISFOLDER&nbsp;&nbsp;=&nbsp;'X'.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;LS_NODE-TEXT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'##&nbsp;##&nbsp;##'.&nbsp;"###&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;LS_NODE-RELATKEY&nbsp;&nbsp;=&nbsp;SPACE.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"#####&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;APPEND&nbsp;LS_NODE&nbsp;TO&nbsp;GT_NODES.<br />
+<br />
+&nbsp;&nbsp;"3.&nbsp;##&nbsp;##&nbsp;####&nbsp;##&nbsp;###&nbsp;##<br />
+&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;LT_RBKP&nbsp;INTO&nbsp;LS_RBKP.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;LS_NODE.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LS_NODE-NODE_KEY&nbsp;=&nbsp;LS_RBKP-BELNR.&nbsp;"##&nbsp;##&nbsp;#####&nbsp;###&nbsp;###&nbsp;##&nbsp;#&nbsp;##&nbsp;##<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"3-1.&nbsp;##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;LS_RBKP-XBLNR&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_NODE-RELATKEY&nbsp;=&nbsp;'ROOT'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_NODE-ISFOLDER&nbsp;=&nbsp;'X'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_NODE-N_IMAGE&nbsp;=&nbsp;ICON_INCOMING_OBJECT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_NODE-EXP_IMAGE&nbsp;=&nbsp;ICON_INCOMING_OBJECT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_NODE-RELATKEY&nbsp;=&nbsp;LS_RBKP-XBLNR.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_NODE-ISFOLDER&nbsp;=&nbsp;SPACE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_NODE-N_IMAGE&nbsp;=&nbsp;ICON_CANCEL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"###&nbsp;##&nbsp;###&nbsp;(#:&nbsp;'50000001&nbsp;(2025.05.09)')<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WRITE&nbsp;LS_RBKP-BUDAT&nbsp;TO&nbsp;LV_DATE_CHAR.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CONCATENATE&nbsp;LS_RBKP-BELNR&nbsp;'('&nbsp;LV_DATE_CHAR&nbsp;')'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INTO&nbsp;LS_NODE-TEXT&nbsp;SEPARATED&nbsp;BY&nbsp;SPACE.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;APPEND&nbsp;LS_NODE&nbsp;TO&nbsp;GT_NODES.<br />
+&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+&nbsp;&nbsp;"4.&nbsp;###&nbsp;###&nbsp;##&nbsp;(###&nbsp;##)<br />
+&nbsp;&nbsp;CALL&nbsp;METHOD&nbsp;GO_TREE-&gt;DELETE_ALL_NODES.<br />
+<br />
+&nbsp;&nbsp;CALL&nbsp;METHOD&nbsp;GO_TREE-&gt;ADD_NODES<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TABLE_STRUCTURE_NAME&nbsp;=&nbsp;'MTREESNODE'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NODE_TABLE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;GT_NODES<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXCEPTIONS<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ERROR_IN_NODE_TABLE&nbsp;&nbsp;=&nbsp;1<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OTHERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2.<br />
+<br />
+&nbsp;&nbsp;"5.&nbsp;##&nbsp;##&nbsp;####&nbsp;(####&nbsp;##&nbsp;#&nbsp;#&nbsp;##)<br />
+&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;GT_NODES&nbsp;INTO&nbsp;LS_EXPAND_NODE&nbsp;WHERE&nbsp;ISFOLDER&nbsp;=&nbsp;'X'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CALL&nbsp;METHOD&nbsp;GO_TREE-&gt;EXPAND_NODE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NODE_KEY&nbsp;=&nbsp;LS_EXPAND_NODE-NODE_KEY.<br />
+&nbsp;&nbsp;ENDLOOP.<br />
+ENDFORM.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;REFRESH2<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;200#&nbsp;##&nbsp;####<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM REFRESH2 .<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;LS_STABLE&nbsp;TYPE&nbsp;LVC_S_STBL.<br />
+<br />
+&nbsp;&nbsp;"###&nbsp;###&nbsp;#<br />
+&nbsp;&nbsp;LS_STABLE-ROW&nbsp;=&nbsp;'X'.<br />
+&nbsp;&nbsp;LS_STABLE-COL&nbsp;=&nbsp;'X'.<br />
+<br />
+&nbsp;&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;CALL&nbsp;METHOD&nbsp;GC_GRID_210-&gt;REFRESH_TABLE_DISPLAY<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IS_STABLE&nbsp;=&nbsp;LS_STABLE.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;SY-SUBRC&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;ENDIF.<br />
+ENDFORM.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;MAKE_FIELDCATALOG_210<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUBSCREEN&nbsp;ALV###&nbsp;######<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM MAKE_FIELDCATALOG_210 .<br />
+&nbsp;&nbsp;CLEAR&nbsp;:&nbsp;GS_FC,&nbsp;GT_FC.<br />
+<br />
+&nbsp;&nbsp;CLEAR&nbsp;GS_FC.<br />
+&nbsp;&nbsp;GS_FC-COL_POS&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;GS_FC-FIELDNAME&nbsp;=&nbsp;'STATUS_ICON'.<br />
+&nbsp;&nbsp;GS_FC-COLTEXT&nbsp;=&nbsp;'##&nbsp;###'.<br />
+&nbsp;&nbsp;GS_FC-ICON&nbsp;=&nbsp;'X'.<br />
+&nbsp;&nbsp;GS_FC-JUST&nbsp;=&nbsp;'C'.<br />
+&nbsp;&nbsp;APPEND&nbsp;GS_FC&nbsp;TO&nbsp;GT_FC.<br />
+<br />
+&nbsp;&nbsp;CLEAR&nbsp;GS_FC.<br />
+&nbsp;&nbsp;GS_FC-COL_POS&nbsp;=&nbsp;1.<br />
+&nbsp;&nbsp;GS_FC-FIELDNAME&nbsp;=&nbsp;'BUZEI'.<br />
+&nbsp;&nbsp;GS_FC-COLTEXT&nbsp;=&nbsp;'####&nbsp;##'.<br />
+&nbsp;&nbsp;APPEND&nbsp;GS_FC&nbsp;TO&nbsp;GT_FC.<br />
+<br />
+&nbsp;&nbsp;CLEAR&nbsp;GS_FC.<br />
+&nbsp;&nbsp;GS_FC-COL_POS&nbsp;=&nbsp;2.<br />
+&nbsp;&nbsp;GS_FC-FIELDNAME&nbsp;=&nbsp;'MATNR'.<br />
+&nbsp;&nbsp;GS_FC-COLTEXT&nbsp;=&nbsp;'####'.<br />
+&nbsp;&nbsp;APPEND&nbsp;GS_FC&nbsp;TO&nbsp;GT_FC.<br />
+<br />
+&nbsp;&nbsp;CLEAR&nbsp;GS_FC.<br />
+&nbsp;&nbsp;GS_FC-COL_POS&nbsp;=&nbsp;3.<br />
+&nbsp;&nbsp;GS_FC-FIELDNAME&nbsp;=&nbsp;'TXZ01'.<br />
+&nbsp;&nbsp;GS_FC-COLTEXT&nbsp;=&nbsp;'####'.<br />
+&nbsp;&nbsp;APPEND&nbsp;GS_FC&nbsp;TO&nbsp;GT_FC.<br />
+<br />
+&nbsp;&nbsp;CLEAR&nbsp;GS_FC.<br />
+&nbsp;&nbsp;GS_FC-COL_POS&nbsp;=&nbsp;4.<br />
+&nbsp;&nbsp;GS_FC-FIELDNAME&nbsp;=&nbsp;'WERKS'.<br />
+&nbsp;&nbsp;GS_FC-COLTEXT&nbsp;=&nbsp;'###'.<br />
+&nbsp;&nbsp;APPEND&nbsp;GS_FC&nbsp;TO&nbsp;GT_FC.<br />
+<br />
+&nbsp;CLEAR&nbsp;GS_FC.<br />
+&nbsp;&nbsp;GS_FC-COL_POS&nbsp;=&nbsp;5.<br />
+&nbsp;&nbsp;GS_FC-FIELDNAME&nbsp;=&nbsp;'WRBTR'.<br />
+&nbsp;&nbsp;GS_FC-COLTEXT&nbsp;=&nbsp;'####'.<br />
+&nbsp;&nbsp;GS_FC-CFIELDNAME&nbsp;=&nbsp;'WAERS'.&nbsp;"&nbsp;WAERS#&nbsp;#####&nbsp;###&nbsp;WAERS#&nbsp;#####&nbsp;###&nbsp;#<br />
+&nbsp;&nbsp;APPEND&nbsp;GS_FC&nbsp;TO&nbsp;GT_FC.<br />
+<br />
+&nbsp;&nbsp;CLEAR&nbsp;GS_FC.<br />
+&nbsp;&nbsp;GS_FC-COL_POS&nbsp;=&nbsp;6.<br />
+&nbsp;&nbsp;GS_FC-FIELDNAME&nbsp;=&nbsp;'MENGE'.<br />
+&nbsp;&nbsp;GS_FC-COLTEXT&nbsp;=&nbsp;'##'.<br />
+&nbsp;&nbsp;GS_FC-QFIELDNAME&nbsp;=&nbsp;'BSTME'.&nbsp;"&nbsp;BSTME#&nbsp;##<br />
+&nbsp;&nbsp;APPEND&nbsp;GS_FC&nbsp;TO&nbsp;GT_FC.<br />
+<br />
+&nbsp;&nbsp;CLEAR&nbsp;GS_FC.<br />
+&nbsp;&nbsp;GS_FC-COL_POS&nbsp;=&nbsp;7.<br />
+&nbsp;&nbsp;GS_FC-FIELDNAME&nbsp;=&nbsp;'BSTME'.<br />
+&nbsp;&nbsp;GS_FC-COLTEXT&nbsp;=&nbsp;'##'.<br />
+&nbsp;&nbsp;APPEND&nbsp;GS_FC&nbsp;TO&nbsp;GT_FC.<br />
+<br />
+&nbsp;&nbsp;CLEAR&nbsp;GS_FC.<br />
+&nbsp;&nbsp;GS_FC-COL_POS&nbsp;=&nbsp;8.<br />
+&nbsp;&nbsp;GS_FC-FIELDNAME&nbsp;=&nbsp;'MWSKZ'.<br />
+&nbsp;&nbsp;GS_FC-COLTEXT&nbsp;=&nbsp;'####'.<br />
+&nbsp;&nbsp;APPEND&nbsp;GS_FC&nbsp;TO&nbsp;GT_FC.<br />
+<br />
+&nbsp;&nbsp;CLEAR&nbsp;GS_FC.<br />
+&nbsp;&nbsp;GS_FC-COL_POS&nbsp;=&nbsp;9.<br />
+&nbsp;&nbsp;GS_FC-FIELDNAME&nbsp;=&nbsp;'WMWST'.<br />
+&nbsp;&nbsp;GS_FC-COLTEXT&nbsp;=&nbsp;'##'.<br />
+&nbsp;&nbsp;GS_FC-CFIELDNAME&nbsp;=&nbsp;'WAERS'.&nbsp;"&nbsp;WAERS&nbsp;##<br />
+&nbsp;&nbsp;APPEND&nbsp;GS_FC&nbsp;TO&nbsp;GT_FC.<br />
+<br />
+&nbsp;&nbsp;CLEAR&nbsp;GS_FC.<br />
+&nbsp;&nbsp;GS_FC-COL_POS&nbsp;=&nbsp;10.<br />
+&nbsp;&nbsp;GS_FC-FIELDNAME&nbsp;=&nbsp;'SGTXT'.<br />
+&nbsp;&nbsp;GS_FC-COLTEXT&nbsp;=&nbsp;'###'.<br />
+&nbsp;&nbsp;APPEND&nbsp;GS_FC&nbsp;TO&nbsp;GT_FC.<br />
+<br />
+&nbsp;&nbsp;CLEAR&nbsp;GS_FC.<br />
+&nbsp;&nbsp;GS_FC-COL_POS&nbsp;=&nbsp;11.<br />
+&nbsp;&nbsp;GS_FC-FIELDNAME&nbsp;=&nbsp;'WAERS'.<br />
+&nbsp;&nbsp;GS_FC-COLTEXT&nbsp;=&nbsp;'##'.<br />
+&nbsp;&nbsp;APPEND&nbsp;GS_FC&nbsp;TO&nbsp;GT_FC.<br />
+ENDFORM.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;BTN_DEL<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##&nbsp;##<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM BTN_DEL .<br />
+&nbsp;&nbsp;"ALV&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;LT_ROWS&nbsp;TYPE&nbsp;LVC_T_ROW,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_ROW&nbsp;TYPE&nbsp;LVC_S_ROW.<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;LV_ANSWER&nbsp;TYPE&nbsp;C.<br />
+<br />
+&nbsp;&nbsp;"###&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;LV_ORIGIN_BELNR&nbsp;TYPE&nbsp;ZRBKP24-BELNR,&nbsp;"##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LV_ORIGIN_GJAHR&nbsp;TYPE&nbsp;ZRBKP24-GJAHR.&nbsp;"##&nbsp;##<br />
+<br />
+&nbsp;&nbsp;"DB&nbsp;##<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;LV_NEXT_BELNR&nbsp;TYPE&nbsp;ZRBKP24-BELNR,&nbsp;"###&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LV_MAX&nbsp;LIKE&nbsp;ZRBKP24-BELNR,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_NEW_HEADER&nbsp;TYPE&nbsp;ZRBKP24,&nbsp;"#&nbsp;##&nbsp;(###)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_NEW_ITEM&nbsp;TYPE&nbsp;ZRSEG24.&nbsp;"#&nbsp;###&nbsp;(###)<br />
+<br />
+&nbsp;&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;LV_SUM_CANCELED&nbsp;TYPE&nbsp;ZRSEG24-MENGE,&nbsp;"##&nbsp;###&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LV_REMAIN_QTY&nbsp;TYPE&nbsp;ZRSEG24-MENGE.&nbsp;"##&nbsp;##<br />
+<br />
+&nbsp;&nbsp;"1.&nbsp;###&nbsp;ROW####<br />
+&nbsp;&nbsp;CALL&nbsp;METHOD&nbsp;GC_GRID_210-&gt;GET_SELECTED_ROWS<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ET_INDEX_ROWS&nbsp;=&nbsp;LT_ROWS.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;LT_ROWS&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;'###&nbsp;##&nbsp;###&nbsp;#####'&nbsp;TYPE&nbsp;'I'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXIT.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"2.&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;PERFORM&nbsp;POPUP_TO_CONFIRM&nbsp;CHANGING&nbsp;LV_ANSWER.<br />
+&nbsp;&nbsp;IF&nbsp;LV_ANSWER&nbsp;&lt;&gt;&nbsp;'1'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;RETURN.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"3.&nbsp;##&nbsp;###&nbsp;###&nbsp;##<br />
+&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;LT_ROWS&nbsp;INTO&nbsp;LS_ROW.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;READ&nbsp;TABLE&nbsp;GT_RSEG&nbsp;INTO&nbsp;GS_RSEG&nbsp;INDEX&nbsp;LS_ROW-INDEX.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;:&nbsp;LV_SUM_CANCELED,&nbsp;LV_REMAIN_QTY.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;(BELNR)#&nbsp;##(XBLNR)#&nbsp;###&nbsp;##&nbsp;##&nbsp;##&nbsp;###&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;SELECT&nbsp;SUM(&nbsp;MENGE&nbsp;)&nbsp;INTO&nbsp;LV_SUM_CANCELED<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM&nbsp;ZRSEG24&nbsp;AS&nbsp;ITEM<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JOIN&nbsp;ZRBKP24&nbsp;AS&nbsp;HEAD&nbsp;ON&nbsp;ITEM~BELNR&nbsp;=&nbsp;HEAD~BELNR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;ITEM~GJAHR&nbsp;=&nbsp;HEAD~GJAHR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;HEAD~XBLNR&nbsp;=&nbsp;GS_RSEG-BELNR&nbsp;&nbsp;"##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;ITEM~EBELN&nbsp;=&nbsp;GS_RSEG-EBELN&nbsp;&nbsp;"##&nbsp;PO##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;ITEM~EBELP&nbsp;=&nbsp;GS_RSEG-EBELP.&nbsp;"##&nbsp;PO##<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LV_REMAIN_QTY&nbsp;=&nbsp;GS_RSEG-MENGE&nbsp;+&nbsp;LV_SUM_CANCELED.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;LV_REMAIN_QTY&nbsp;&lt;=&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;'###&nbsp;###&nbsp;##&nbsp;##&nbsp;###&nbsp;###&nbsp;########'&nbsp;TYPE&nbsp;'E'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LV_ORIGIN_BELNR&nbsp;=&nbsp;GS_RSEG-BELNR.<br />
+&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+&nbsp;&nbsp;"4.&nbsp;##&nbsp;##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;"4-1.&nbsp;##&nbsp;##&nbsp;51...<br />
+&nbsp;&nbsp;SELECT&nbsp;MAX(&nbsp;BELNR&nbsp;)&nbsp;INTO&nbsp;LV_NEXT_BELNR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;FROM&nbsp;ZRBKP24<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;BELNR&nbsp;&gt;=&nbsp;'5100000000'.<br />
+<br />
+&nbsp;&nbsp;&nbsp;IF&nbsp;LV_NEXT_BELNR&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LV_NEXT_BELNR&nbsp;=&nbsp;LV_NEXT_BELNR&nbsp;+&nbsp;1.<br />
+&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LV_NEXT_BELNR&nbsp;=&nbsp;'5100000000'.<br />
+&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"4-2.&nbsp;##&nbsp;###&nbsp;##<br />
+&nbsp;&nbsp;CLEAR&nbsp;LS_NEW_HEADER.<br />
+&nbsp;&nbsp;SELECT&nbsp;SINGLE&nbsp;*&nbsp;FROM&nbsp;ZRBKP24&nbsp;INTO&nbsp;LS_NEW_HEADER<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;BELNR&nbsp;=&nbsp;LV_ORIGIN_BELNR.<br />
+&nbsp;&nbsp;LS_NEW_HEADER-BELNR&nbsp;=&nbsp;LV_NEXT_BELNR.<br />
+&nbsp;&nbsp;LS_NEW_HEADER-GJAHR&nbsp;=&nbsp;SY-DATUM(4).<br />
+&nbsp;&nbsp;LS_NEW_HEADER-BLART&nbsp;=&nbsp;'KG'.&nbsp;"##&nbsp;##&nbsp;(##)<br />
+&nbsp;&nbsp;LS_NEW_HEADER-BUDAT&nbsp;=&nbsp;SY-DATUM.<br />
+&nbsp;&nbsp;LS_NEW_HEADER-XBLNR&nbsp;=&nbsp;LV_ORIGIN_BELNR.&nbsp;"##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;LS_NEW_HEADER-WERKS&nbsp;=&nbsp;GS_RSEG-WERKS.<br />
+<br />
+&nbsp;&nbsp;"4-3.&nbsp;##&nbsp;DB#&nbsp;##<br />
+&nbsp;&nbsp;INSERT&nbsp;ZRBKP24&nbsp;FROM&nbsp;LS_NEW_HEADER.<br />
+<br />
+&nbsp;&nbsp;"5.&nbsp;##&nbsp;###&nbsp;##<br />
+&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;LT_ROWS&nbsp;INTO&nbsp;LS_ROW.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;READ&nbsp;TABLE&nbsp;GT_RSEG&nbsp;INTO&nbsp;GS_RSEG&nbsp;INDEX&nbsp;LS_ROW-INDEX.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"5-1.&nbsp;###&nbsp;##&nbsp;###<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CLEAR&nbsp;LS_NEW_ITEM.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MOVE-CORRESPONDING&nbsp;GS_RSEG&nbsp;TO&nbsp;LS_NEW_ITEM.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LS_NEW_ITEM-BELNR&nbsp;=&nbsp;LV_NEXT_BELNR.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LS_NEW_ITEM-GJAHR&nbsp;=&nbsp;SY-DATUM(4).<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LS_NEW_ITEM-MENGE&nbsp;=&nbsp;GS_RSEG-MENGE&nbsp;*&nbsp;-1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LS_NEW_ITEM-WRBTR&nbsp;=&nbsp;GS_RSEG-WRBTR&nbsp;*&nbsp;-1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LS_NEW_ITEM-WMWST&nbsp;=&nbsp;GS_RSEG-WMWST&nbsp;*&nbsp;-1.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;INSERT&nbsp;ZRSEG24&nbsp;FROM&nbsp;LS_NEW_ITEM.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"5-2.&nbsp;##&nbsp;###&nbsp;####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;UPDATE&nbsp;ZRSEG24<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;LOEKZ&nbsp;=&nbsp;'X'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;BELNR&nbsp;=&nbsp;GS_RSEG-BELNR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;EBELN&nbsp;=&nbsp;GS_RSEG-EBELN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;EBELP&nbsp;=&nbsp;GS_RSEG-EBELP.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"5-3.&nbsp;PO&nbsp;###&nbsp;##&nbsp;##&nbsp;##(REMNG)&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;UPDATE&nbsp;ZEKPO24<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET&nbsp;REMNG&nbsp;=&nbsp;REMNG&nbsp;-&nbsp;GS_RSEG-MENGE<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;EBELN&nbsp;=&nbsp;GS_RSEG-EBELN<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;EBELP&nbsp;=&nbsp;GS_RSEG-EBELP.<br />
+&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+&nbsp;&nbsp;MESSAGE&nbsp;'##&nbsp;###&nbsp;#######'&nbsp;TYPE&nbsp;'I'.<br />
+<br />
+&nbsp;&nbsp;"##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;PERFORM&nbsp;BUILD_TREE_NODES.<br />
+&nbsp;&nbsp;"PERFORM&nbsp;GET_IR_DATA.<br />
+&nbsp;&nbsp;PERFORM&nbsp;REFRESH2.<br />
+ENDFORM.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;REFRESH_SCREEN<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##&nbsp;##<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM REFRESH_SCREEN .<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;LS_FCAT&nbsp;TYPE&nbsp;LVC_S_FCAT,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LT_FCAT&nbsp;TYPE&nbsp;LVC_T_FCAT.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;GV_SELECTED_BELNR&nbsp;IS&nbsp;INITIAL&nbsp;OR&nbsp;GV_SELECTED_BELNR&nbsp;=&nbsp;'ROOT'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;RETURN.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"2.&nbsp;##&nbsp;###&nbsp;##<br />
+&nbsp;&nbsp;SELECT&nbsp;SINGLE&nbsp;*&nbsp;FROM&nbsp;ZRBKP24<br />
+&nbsp;&nbsp;&nbsp;&nbsp;INTO&nbsp;CORRESPONDING&nbsp;FIELDS&nbsp;OF&nbsp;GS_RBKP<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;BELNR&nbsp;=&nbsp;GV_SELECTED_BELNR.<br />
+<br />
+&nbsp;&nbsp;"3.&nbsp;###&nbsp;###&nbsp;##<br />
+&nbsp;&nbsp;SELECT&nbsp;*&nbsp;FROM&nbsp;ZRSEG24<br />
+&nbsp;&nbsp;&nbsp;&nbsp;INTO&nbsp;CORRESPONDING&nbsp;FIELDS&nbsp;OF&nbsp;TABLE&nbsp;GT_RSEG<br />
+&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;BELNR&nbsp;=&nbsp;GV_SELECTED_BELNR.<br />
+<br />
+&nbsp;&nbsp;CALL&nbsp;METHOD&nbsp;GC_GRID_210-&gt;GET_FRONTEND_FIELDCATALOG<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ET_FIELDCATALOG&nbsp;=&nbsp;LT_FCAT.<br />
+<br />
+&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;LT_FCAT&nbsp;INTO&nbsp;LS_FCAT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;LS_FCAT-FIELDNAME&nbsp;=&nbsp;'STATUS_ICON'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;GV_SELECTED_BELNR&nbsp;&gt;=&nbsp;'5100000000'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_FCAT-NO_OUT&nbsp;=&nbsp;'X'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LS_FCAT-NO_OUT&nbsp;=&nbsp;'&nbsp;'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MODIFY&nbsp;LT_FCAT&nbsp;FROM&nbsp;LS_FCAT.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+&nbsp;&nbsp;CALL&nbsp;METHOD&nbsp;GC_GRID_210-&gt;SET_FRONTEND_FIELDCATALOG<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IT_FIELDCATALOG&nbsp;=&nbsp;LT_FCAT.<br />
+<br />
+&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;GT_RSEG&nbsp;INTO&nbsp;GS_RSEG.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;GS_RSEG-LOEKZ&nbsp;=&nbsp;'X'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GS_RSEG-STATUS_ICON&nbsp;=&nbsp;ICON_LED_RED.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GS_RSEG-STATUS_ICON&nbsp;=&nbsp;ICON_LED_GREEN.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MODIFY&nbsp;GT_RSEG&nbsp;FROM&nbsp;GS_RSEG.<br />
+&nbsp;&nbsp;ENDLOOP.<br />
+<br />
+&nbsp;&nbsp;CLEAR&nbsp;OK_CODE.<br />
+ENDFORM.<br />
+<br />
+FORM POPUP_TO_CONFIRM  CHANGING P_ANSWER.<br />
+&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'POPUP_TO_CONFIRM'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TITLEBAR&nbsp;=&nbsp;'##&nbsp;##'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEXT_QUESTION&nbsp;=&nbsp;'########?'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEXT_BUTTON_1&nbsp;=&nbsp;'#'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TEXT_BUTTON_2&nbsp;=&nbsp;'###'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DISPLAY_CANCEL_BUTTON&nbsp;=&nbsp;'&nbsp;'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANSWER&nbsp;=&nbsp;P_ANSWER.<br />
+ENDFORM.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 750</td>
+   </tr>
+</table>
+</body>
+</html>

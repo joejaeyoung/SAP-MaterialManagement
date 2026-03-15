@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZMM24_001_TOP</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZMM24_001_TOP</h2>
+<h3> Description: </h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZMM24_001_TOP<br />
+*&---------------------------------------------------------------------*<br />
+<br />
+<br />
+   </div>
+   <div class="code">
+TABLES : ZLFA1_24. "#####<br />
+TABLES : ZLFB1_24. "#### ###<br />
+TABLES : ZLFM1_24. "#### ###<br />
+<br />
+"## ###<br />
+   </div>
+   <div class="codeComment">
+*DATA&nbsp;:&nbsp;BEGIN&nbsp;OF&nbsp;GS_LFA1,<br />
+*&nbsp;&nbsp;MANDT&nbsp;LIKE&nbsp;ZLFA1_24-MANDT,&nbsp;&nbsp;"CLIENT<br />
+*&nbsp;&nbsp;LIFNR&nbsp;LIKE&nbsp;ZLFA1_24-LIFNR,&nbsp;&nbsp;"#####<br />
+*&nbsp;&nbsp;NAME1&nbsp;LIKE&nbsp;ZLFA1_24-NAME1,&nbsp;&nbsp;"####<br />
+*&nbsp;&nbsp;LAND1&nbsp;LIKE&nbsp;ZLFA1_24-LAND1,&nbsp;&nbsp;"###<br />
+*&nbsp;&nbsp;STRAS&nbsp;LIKE&nbsp;ZLFA1_24-STRAS,&nbsp;&nbsp;"##<br />
+*&nbsp;&nbsp;KTOKK&nbsp;LIKE&nbsp;ZLFA1_24-KTOKK,&nbsp;&nbsp;"##&nbsp;##<br />
+*&nbsp;&nbsp;STCD1&nbsp;LIKE&nbsp;ZLFA1_24-STCD1,&nbsp;&nbsp;"##&nbsp;##<br />
+*&nbsp;&nbsp;STCD2&nbsp;LIKE&nbsp;ZLFA1_24-STCD2,&nbsp;&nbsp;"###&nbsp;##<br />
+*END&nbsp;OF&nbsp;GS_LFA1.<br />
+   </div>
+   <div class="code">
+DATA : GS_LFA1 TYPE ZLFA1_24.<br />
+DATA : GT_LFA1 LIKE TABLE OF GS_LFA1.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*"####&nbsp;###<br />
+*DATA&nbsp;:&nbsp;BEGIN&nbsp;OF&nbsp;GS_LFB1,<br />
+*&nbsp;&nbsp;MANDT&nbsp;LIKE&nbsp;ZLFB1_24-MANDT,&nbsp;&nbsp;"CLIENT<br />
+*&nbsp;&nbsp;LIFNR&nbsp;LIKE&nbsp;ZLFB1_24-LIFNR,&nbsp;&nbsp;"#####<br />
+*&nbsp;&nbsp;BUKRS&nbsp;LIKE&nbsp;ZLFB1_24-BUKRS,&nbsp;&nbsp;"####<br />
+*&nbsp;&nbsp;LOEVM&nbsp;LIKE&nbsp;ZLFB1_24-LOEVM,&nbsp;&nbsp;"#####<br />
+*&nbsp;&nbsp;AKONT&nbsp;LIKE&nbsp;ZLFB1_24-AKONT,&nbsp;&nbsp;"####<br />
+*&nbsp;&nbsp;ZTERM&nbsp;LIKE&nbsp;ZLFB1_24-ZTERM,&nbsp;&nbsp;"####<br />
+*END&nbsp;OF&nbsp;GS_LFB1.<br />
+   </div>
+   <div class="code">
+DATA : GS_LFB1 TYPE ZLFB1_24.<br />
+DATA : GT_LFB1 LIKE TABLE OF GS_LFB1.<br />
+<br />
+"#######<br />
+   </div>
+   <div class="codeComment">
+*DATA&nbsp;:&nbsp;BEGIN&nbsp;OF&nbsp;GS_LFM1,<br />
+*&nbsp;&nbsp;MANDT&nbsp;LIKE&nbsp;ZLFM1_24-MANDT,&nbsp;&nbsp;"CLIENT<br />
+*&nbsp;&nbsp;LIFNR&nbsp;LIKE&nbsp;ZLFM1_24-LIFNR,&nbsp;&nbsp;"#####<br />
+*&nbsp;&nbsp;EKORG&nbsp;LIKE&nbsp;ZLFM1_24-EKORG,&nbsp;&nbsp;"####<br />
+*&nbsp;&nbsp;EKGRP&nbsp;LIKE&nbsp;ZLFM1_24-EKGRP,&nbsp;&nbsp;"####<br />
+*&nbsp;&nbsp;LOEVM&nbsp;LIKE&nbsp;ZLFM1_24-LOEVM,&nbsp;&nbsp;"#####<br />
+*&nbsp;&nbsp;WAERS&nbsp;LIKE&nbsp;ZLFM1_24-WAERS,&nbsp;&nbsp;"######<br />
+*&nbsp;&nbsp;MWSKZ&nbsp;LIKE&nbsp;ZLFM1_24-MWSKZ,&nbsp;&nbsp;"####<br />
+*END&nbsp;OF&nbsp;GS_LFM1.<br />
+   </div>
+   <div class="code">
+DATA : GS_LFM1 TYPE ZLFM1_24.<br />
+DATA : GT_LFM1 LIKE TABLE OF GS_LFM1.<br />
+<br />
+"### 100# ##### #### ###<br />
+DATA :   GV_LIFNR LIKE ZLFA1_24-LIFNR,  "#####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_NAME1&nbsp;LIKE&nbsp;ZLFA1_24-NAME1,&nbsp;&nbsp;"####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_LAND1&nbsp;LIKE&nbsp;ZLFA1_24-LAND1,&nbsp;&nbsp;"###<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_STRAS&nbsp;LIKE&nbsp;ZLFA1_24-STRAS,&nbsp;&nbsp;"##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_KTOKK&nbsp;LIKE&nbsp;ZLFA1_24-KTOKK,&nbsp;&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_STCD1&nbsp;LIKE&nbsp;ZLFA1_24-STCD1,&nbsp;&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_STCD2&nbsp;LIKE&nbsp;ZLFA1_24-STCD2,&nbsp;&nbsp;"###&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_BUKRS&nbsp;LIKE&nbsp;ZLFB1_24-BUKRS,&nbsp;&nbsp;"####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_AKONT&nbsp;LIKE&nbsp;ZLFB1_24-AKONT,&nbsp;&nbsp;"####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_ZTERM&nbsp;LIKE&nbsp;ZLFB1_24-ZTERM,&nbsp;&nbsp;"####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_EKORG&nbsp;LIKE&nbsp;ZLFM1_24-EKORG,&nbsp;&nbsp;"####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_EKGRP&nbsp;LIKE&nbsp;ZLFM1_24-EKGRP,&nbsp;&nbsp;"####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_LOEVM&nbsp;LIKE&nbsp;ZLFM1_24-LOEVM,&nbsp;&nbsp;"#####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_WAERS&nbsp;LIKE&nbsp;ZLFM1_24-WAERS,&nbsp;&nbsp;"######<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GV_MWSKZ&nbsp;LIKE&nbsp;ZLFM1_24-MWSKZ.&nbsp;&nbsp;"####<br />
+<br />
+<br />
+" ALV ## ##<br />
+DATA: BEGIN OF GS_ALV_OUTPUT,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LIFNR&nbsp;TYPE&nbsp;ZLFA1_24-LIFNR,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;#####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NAME1&nbsp;TYPE&nbsp;ZLFA1_24-NAME1,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAND1&nbsp;TYPE&nbsp;ZLFA1_24-LAND1,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;###<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KTOKK&nbsp;TYPE&nbsp;ZLFA1_24-KTOKK,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;#####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STCD1&nbsp;TYPE&nbsp;ZLFA1_24-STCD1,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STCD2&nbsp;TYPE&nbsp;ZLFA1_24-STCD2,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;#####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STRAS&nbsp;TYPE&nbsp;ZLFA1_24-STRAS,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BUKRS&nbsp;TYPE&nbsp;ZLFB1_24-BUKRS,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AKONT&nbsp;TYPE&nbsp;ZLFB1_24-AKONT,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZTERM&nbsp;TYPE&nbsp;ZLFB1_24-ZTERM,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EKORG&nbsp;TYPE&nbsp;ZLFM1_24-EKORG,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EKGRP&nbsp;TYPE&nbsp;ZLFM1_24-EKGRP,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WAERS&nbsp;TYPE&nbsp;ZLFM1_24-WAERS,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MWSKZ&nbsp;TYPE&nbsp;ZLFM1_24-MWSKZ,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COLOR&nbsp;TYPE&nbsp;LVC_T_SCOL,&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;#&nbsp;##&nbsp;(#####&nbsp;##&nbsp;###)<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END&nbsp;OF&nbsp;GS_ALV_OUTPUT.<br />
+DATA: GT_ALV_OUTPUT LIKE TABLE OF GS_ALV_OUTPUT.<br />
+<br />
+" ALV ## (## ###)<br />
+DATA : GS_FC TYPE LVC_S_FCAT,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GT_FC&nbsp;TYPE&nbsp;LVC_T_FCAT.<br />
+DATA : GS_LAYOUT TYPE LVC_S_LAYO.<br />
+DATA : GC_DOCKING TYPE REF TO CL_GUI_DOCKING_CONTAINER.<br />
+DATA : GC_GRID TYPE REF TO CL_GUI_ALV_GRID.<br />
+<br />
+<br />
+"## ## ###<br />
+DATA : GV_INPUT_MODE TYPE C. "## ## ##<br />
+<br />
+" ## ##<br />
+DATA: gt_exclude   TYPE ui_functions.<br />
+<br />
+" ## ## ##<br />
+DATA: gv_modified  TYPE abap_bool.<br />
+<br />
+" ## ### ##<br />
+DATA : OK_CODE TYPE SY-UCOMM.<br />
+<br />
+" ## ### ##<br />
+DATA : GO_EVENT TYPE REF TO EVENT.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 750</td>
+   </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=ISO-8859-1" />
+<title>ZMM24_001_F01</title>
+<style type="text/css">
+.code{ font-family:"Courier New", Courier, monospace; color:#000; font-size:14px; background-color:#F2F4F7 }
+  .codeComment {font-family:"Courier New", Courier, monospace; color:#0000F0; font-size:14px; background-color:#F2F4F7 }
+  .normalBold{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; font-weight:800 }
+  .normalBoldLarge{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+</style>
+<style type="text/css">
+  .normal{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px }
+  .footer{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:12px; text-align: center }
+  h2{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:16px; font-weight:800 }
+  h3{ font-family:Arial, Helvetica, sans-serif; color:#000; font-size:14px; font-weight:800 }
+  .outerTable{
+   background-color:#E0E7ED;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-right-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+  .innerTable{
+   background-color:#F2F4F7;
+   width:100%;
+   border-top-width: thin;
+   border-right-width: thin;
+   border-bottom-width: thin;
+   border-left-width: thin;
+   border-top-style: solid;
+   border-right-style: solid;
+   border-bottom-style: solid;
+   border-left-style: solid;
+  }
+</style>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZMM24_001_F01</h2>
+<h3> Description: </h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZMM24_001_F01_SCR<br />
+*&---------------------------------------------------------------------*<br />
+<br />
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;SCREEN_MODIFY<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##&nbsp;###&nbsp;##,&nbsp;##&nbsp;###&nbsp;##&nbsp;####.<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM SCREEN_MODIFY .<br />
+&nbsp;&nbsp;LOOP&nbsp;AT&nbsp;SCREEN.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"1.&nbsp;##&nbsp;##&nbsp;##&nbsp;#<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;RB_CR&nbsp;=&nbsp;'X'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"P_LIFNR&nbsp;(#####)&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;SCREEN-GROUP1&nbsp;=&nbsp;'DSP'.&nbsp;"####&nbsp;##(#####)&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCREEN-ACTIVE&nbsp;=&nbsp;0.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCREEN-INVISIBLE&nbsp;=&nbsp;1.&nbsp;&nbsp;&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCREEN-REQUIRED&nbsp;=&nbsp;0.&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;###&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MODIFY&nbsp;SCREEN.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"P_KTOKK&nbsp;(#####)&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;SCREEN-GROUP1&nbsp;=&nbsp;'CR1'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCREEN-ACTIVE&nbsp;=&nbsp;1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;###<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCREEN-INVISIBLE&nbsp;=&nbsp;0.&nbsp;&nbsp;&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCREEN-REQUIRED&nbsp;=&nbsp;2.&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MODIFY&nbsp;SCREEN.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"2.&nbsp;##&nbsp;##&nbsp;##&nbsp;#<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;RB_DSP&nbsp;=&nbsp;'X'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"P_KTOKK&nbsp;(#####)&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;SCREEN-GROUP1&nbsp;=&nbsp;'CR1'.&nbsp;"##&nbsp;##&nbsp;##(#####)&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCREEN-ACTIVE&nbsp;=&nbsp;0.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCREEN-INVISIBLE&nbsp;=&nbsp;1.&nbsp;&nbsp;&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCREEN-REQUIRED&nbsp;=&nbsp;0.&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;###&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MODIFY&nbsp;SCREEN.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"P_LIFNR&nbsp;(#####)&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;SCREEN-GROUP1&nbsp;=&nbsp;'DSP'.&nbsp;"####&nbsp;##(#####)&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCREEN-ACTIVE&nbsp;=&nbsp;1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;###<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCREEN-INVISIBLE&nbsp;=&nbsp;0.&nbsp;&nbsp;&nbsp;"##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCREEN-REQUIRED&nbsp;=&nbsp;2.&nbsp;&nbsp;&nbsp;&nbsp;"##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MODIFY&nbsp;SCREEN.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;ENDLOOP.<br />
+ENDFORM.<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;VALID_SCREEN_INPUT<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;####&nbsp;##&nbsp;#####&nbsp;####.<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM VALID_SCREEN_INPUT .<br />
+&nbsp;&nbsp;IF&nbsp;RB_CR&nbsp;=&nbsp;'X'.&nbsp;"###&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;P_KTOKK&nbsp;IS&nbsp;INITIAL&nbsp;OR&nbsp;P_BUKRS&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;'##&nbsp;###&nbsp;######'&nbsp;TYPE&nbsp;'I'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STOP.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;ELSE.&nbsp;"###&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;P_BUKRS&nbsp;IS&nbsp;INITIAL&nbsp;OR&nbsp;P_LIFNR&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;'##&nbsp;###&nbsp;######'&nbsp;TYPE&nbsp;'I'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STOP.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+<br />
+ENDFORM.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;SAVE_NEW_VENDOR<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;###&nbsp;##&nbsp;##&nbsp;##<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM SAVE_NEW_VENDOR .<br />
+&nbsp;&nbsp;"1.&nbsp;#####&nbsp;####&nbsp;####<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;LV_MAX_LIFNR&nbsp;TYPE&nbsp;ZLFA1_24-LIFNR.<br />
+&nbsp;&nbsp;PERFORM&nbsp;GET_MAX_LIFNR&nbsp;CHANGING&nbsp;LV_MAX_LIFNR.<br />
+<br />
+&nbsp;&nbsp;"2.&nbsp;##&nbsp;##&nbsp;#&nbsp;####&nbsp;##<br />
+&nbsp;&nbsp;PERFORM&nbsp;GET_VALUE_LAYOUT&nbsp;USING&nbsp;LV_MAX_LIFNR.<br />
+<br />
+&nbsp;&nbsp;"3.&nbsp;##&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;PERFORM&nbsp;VALIDATE_INPUT.<br />
+&nbsp;&nbsp;IF&nbsp;SY-SUBRC&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;RETURN.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"4.&nbsp;DB&nbsp;##<br />
+&nbsp;&nbsp;PERFORM&nbsp;SAVE_TO_DATABASE&nbsp;USING&nbsp;LV_MAX_LIFNR.<br />
+ENDFORM.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;GET_MAX_LIFNR<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##&nbsp;###&nbsp;###&nbsp;##&nbsp;##&nbsp;###&nbsp;###<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM GET_MAX_LIFNR  CHANGING P_MAX_LIFNR.<br />
+&nbsp;&nbsp;DATA&nbsp;:&nbsp;LV_MAX_LIFNR&nbsp;TYPE&nbsp;I.<br />
+<br />
+&nbsp;&nbsp;SELECT&nbsp;MAX(&nbsp;LIFNR&nbsp;)&nbsp;INTO&nbsp;P_MAX_LIFNR&nbsp;FROM&nbsp;ZLFA1_24.<br />
+<br />
+&nbsp;&nbsp;IF&nbsp;SY-SUBRC&nbsp;=&nbsp;0&nbsp;AND&nbsp;P_MAX_LIFNR&nbsp;IS&nbsp;NOT&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LV_MAX_LIFNR&nbsp;=&nbsp;P_MAX_LIFNR.&nbsp;"###&nbsp;###&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;LV_MAX_LIFNR&nbsp;=&nbsp;LV_MAX_LIFNR&nbsp;+&nbsp;1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;P_MAX_LIFNR&nbsp;=&nbsp;LV_MAX_LIFNR.&nbsp;"###&nbsp;##&nbsp;###&nbsp;##<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"LEADING&nbsp;ZERO&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;CALL&nbsp;FUNCTION&nbsp;'CONVERSION_EXIT_ALPHA_INPUT'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INPUT&nbsp;=&nbsp;P_MAX_LIFNR<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IMPORTING<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTPUT&nbsp;=&nbsp;P_MAX_LIFNR.<br />
+&nbsp;&nbsp;ELSE.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;#&nbsp;##&nbsp;#####<br />
+&nbsp;&nbsp;&nbsp;&nbsp;P_MAX_LIFNR&nbsp;=&nbsp;'1000000000'.<br />
+&nbsp;&nbsp;ENDIF.<br />
+ENDFORM.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;VALIDATE_INPUT<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;###&nbsp;##<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM VALIDATE_INPUT .<br />
+<br />
+ENDFORM.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;SAVE_TO_DATABASE<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##&nbsp;###&nbsp;DATABASE#&nbsp;##<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM SAVE_TO_DATABASE  USING    P_MAX_LIFNR.<br />
+&nbsp;&nbsp;"1.&nbsp;LFA1&nbsp;(#####)&nbsp;INSERT<br />
+&nbsp;&nbsp;INSERT&nbsp;ZLFA1_24&nbsp;FROM&nbsp;GS_LFA1.<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;IF&nbsp;SY-SUBRC&nbsp;&lt;&gt;&nbsp;0.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;'#####&nbsp;##&nbsp;##'&nbsp;TYPE&nbsp;'E'.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;ROLLBACK&nbsp;WORK.<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;RETURN.<br />
+*&nbsp;&nbsp;ENDIF.<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;"2.&nbsp;LFB1&nbsp;(####&nbsp;###)&nbsp;INSERT<br />
+&nbsp;&nbsp;INSERT&nbsp;ZLFB1_24&nbsp;FROM&nbsp;GS_LFB1.<br />
+&nbsp;&nbsp;IF&nbsp;SY-SUBRC&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;'####&nbsp;###&nbsp;##&nbsp;##'&nbsp;TYPE&nbsp;'E'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ROLLBACK&nbsp;WORK.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;RETURN.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"3.&nbsp;LFM1&nbsp;(####&nbsp;###)&nbsp;INSERT<br />
+&nbsp;&nbsp;INSERT&nbsp;ZLFM1_24&nbsp;FROM&nbsp;GS_LFM1.<br />
+&nbsp;&nbsp;IF&nbsp;SY-SUBRC&nbsp;&lt;&gt;&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;MESSAGE&nbsp;'####&nbsp;###&nbsp;##&nbsp;##'&nbsp;TYPE&nbsp;'E'.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ROLLBACK&nbsp;WORK.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;RETURN.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;MESSAGE&nbsp;|###&nbsp;{&nbsp;P_MAX_LIFNR&nbsp;}#&nbsp;#######.|&nbsp;TYPE&nbsp;'S'.<br />
+<br />
+&nbsp;&nbsp;CLEAR:&nbsp;GS_LFA1,&nbsp;GS_LFB1,&nbsp;GS_LFM1.<br />
+&nbsp;&nbsp;GV_INPUT_MODE&nbsp;=&nbsp;'V'.<br />
+ENDFORM.<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;GET_VALUE_LAYOUT<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM GET_VALUE_LAYOUT USING P_MAX_LIFNR.<br />
+&nbsp;&nbsp;CLEAR&nbsp;:&nbsp;GS_LFA1,&nbsp;GS_LFB1,&nbsp;GS_LFM1.<br />
+<br />
+&nbsp;&nbsp;"LFA1<br />
+&nbsp;&nbsp;GS_LFA1-LIFNR&nbsp;=&nbsp;P_MAX_LIFNR.<br />
+&nbsp;&nbsp;GS_LFA1-NAME1&nbsp;=&nbsp;GV_NAME1.<br />
+&nbsp;&nbsp;GS_LFA1-LAND1&nbsp;=&nbsp;GV_LAND1.<br />
+&nbsp;&nbsp;GS_LFA1-STRAS&nbsp;=&nbsp;GV_STRAS.<br />
+&nbsp;&nbsp;GS_LFA1-KTOKK&nbsp;=&nbsp;GV_KTOKK.<br />
+&nbsp;&nbsp;GS_LFA1-STCD1&nbsp;=&nbsp;GV_STCD1.<br />
+&nbsp;&nbsp;GS_LFA1-STCD2&nbsp;=&nbsp;GV_STCD2.<br />
+<br />
+&nbsp;&nbsp;"LFB1<br />
+&nbsp;&nbsp;GS_LFB1-LIFNR&nbsp;=&nbsp;P_MAX_LIFNR.<br />
+&nbsp;&nbsp;GS_LFB1-BUKRS&nbsp;=&nbsp;GV_BUKRS.<br />
+&nbsp;&nbsp;GS_LFB1-AKONT&nbsp;=&nbsp;GV_AKONT.<br />
+&nbsp;&nbsp;GS_LFB1-ZTERM&nbsp;=&nbsp;GV_ZTERM.<br />
+<br />
+&nbsp;&nbsp;"LFM1<br />
+&nbsp;&nbsp;GS_LFM1-LIFNR&nbsp;=&nbsp;P_MAX_LIFNR.<br />
+&nbsp;&nbsp;GS_LFM1-EKORG&nbsp;=&nbsp;GV_EKORG.<br />
+&nbsp;&nbsp;GS_LFM1-EKGRP&nbsp;=&nbsp;GV_EKGRP.<br />
+&nbsp;&nbsp;GS_LFM1-WAERS&nbsp;=&nbsp;GV_WAERS.<br />
+&nbsp;&nbsp;GS_LFM1-MWSKZ&nbsp;=&nbsp;GV_MWSKZ.<br />
+ENDFORM.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;CHECK_INPUT_VENDOR_DATA<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##&nbsp;###&nbsp;###&nbsp;###&nbsp;##<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM CHECK_INPUT_VENDOR_DATA CHANGING P_FLAG.<br />
+&nbsp;&nbsp;P_FLAG&nbsp;=&nbsp;1.<br />
+<br />
+&nbsp;&nbsp;"1.&nbsp;####<br />
+&nbsp;&nbsp;IF&nbsp;GV_NAME1&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;P_FLAG&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"2.&nbsp;###<br />
+&nbsp;&nbsp;IF&nbsp;GV_LAND1&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;P_FLAG&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"3.&nbsp;####<br />
+&nbsp;&nbsp;IF&nbsp;P_KTOKK&nbsp;=&nbsp;'3000'&nbsp;AND&nbsp;P_KTOKK&nbsp;&lt;&gt;&nbsp;'2000'.&nbsp;&nbsp;"3000##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;GV_STCD1&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P_FLAG&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"4.&nbsp;###&nbsp;##<br />
+&nbsp;&nbsp;IF&nbsp;P_KTOKK&nbsp;&lt;&gt;&nbsp;'3000'&nbsp;AND&nbsp;P_KTOKK&nbsp;&lt;&gt;&nbsp;'2000'.&nbsp;&nbsp;"2000,&nbsp;3000##&nbsp;##<br />
+&nbsp;&nbsp;&nbsp;&nbsp;IF&nbsp;GV_STCD2&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P_FLAG&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;ENDIF.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"5.&nbsp;##<br />
+&nbsp;&nbsp;IF&nbsp;GV_STRAS&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;P_FLAG&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"6.&nbsp;####<br />
+&nbsp;&nbsp;IF&nbsp;GV_AKONT&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;P_FLAG&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"7.&nbsp;##&nbsp;##<br />
+&nbsp;&nbsp;IF&nbsp;GV_ZTERM&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;P_FLAG&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"8.&nbsp;####<br />
+&nbsp;&nbsp;IF&nbsp;GV_EKORG&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;P_FLAG&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"9.&nbsp;####<br />
+&nbsp;&nbsp;IF&nbsp;GV_EKGRP&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;P_FLAG&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"10.&nbsp;######<br />
+&nbsp;&nbsp;IF&nbsp;GV_WAERS&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;P_FLAG&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;ENDIF.<br />
+<br />
+&nbsp;&nbsp;"11.&nbsp;####<br />
+&nbsp;&nbsp;IF&nbsp;GV_MWSKZ&nbsp;IS&nbsp;INITIAL.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;P_FLAG&nbsp;=&nbsp;0.<br />
+&nbsp;&nbsp;ENDIF.<br />
+ENDFORM.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form&nbsp;&nbsp;ERASE_ALL_DATA<br />
+*&---------------------------------------------------------------------*<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##&nbsp;####&nbsp;##&nbsp;###&nbsp;##&nbsp;CLEAR<br />
+*----------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+FORM ERASE_ALL_DATA .<br />
+&nbsp;&nbsp;CLEAR&nbsp;GV_NAME1.<br />
+&nbsp;&nbsp;CLEAR&nbsp;GV_LAND1.<br />
+&nbsp;&nbsp;CLEAR&nbsp;GV_STRAS.<br />
+&nbsp;&nbsp;CLEAR&nbsp;GV_STCD1.<br />
+&nbsp;&nbsp;CLEAR&nbsp;GV_STCD2.<br />
+&nbsp;&nbsp;CLEAR&nbsp;GV_AKONT.<br />
+&nbsp;&nbsp;CLEAR&nbsp;GV_ZTERM.<br />
+&nbsp;&nbsp;CLEAR&nbsp;GV_EKORG.<br />
+&nbsp;&nbsp;CLEAR&nbsp;GV_EKGRP.<br />
+&nbsp;&nbsp;CLEAR&nbsp;GV_WAERS.<br />
+&nbsp;&nbsp;CLEAR&nbsp;GV_MWSKZ.<br />
+&nbsp;&nbsp;CLEAR&nbsp;ZLFB1_24-AKONT.<br />
+&nbsp;&nbsp;CLEAR&nbsp;ZLFB1_24-ZTERM.<br />
+&nbsp;&nbsp;CLEAR&nbsp;ZLFM1_24-MWSKZ.<br />
+ENDFORM.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
+   <tr>
+<td class="footer">Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2025. Sap Release 750</td>
+   </tr>
+</table>
+</body>
+</html>
